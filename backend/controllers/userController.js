@@ -1,3 +1,3 @@
-exports.renderIndex = (req, res) => {
-    console.log("get index");
-}
+exports.createUser = (req, res) => {
+  // put user in db
+};
