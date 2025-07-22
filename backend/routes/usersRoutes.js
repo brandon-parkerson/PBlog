@@ -4,11 +4,7 @@ const userController = require("../controllers/userController");
 
 router.use(express.urlencoded({ extended: true }));
 
-router.get("/", userController.renderIndex);
-
-
-
-
+router.post("/", userController.createUser);
 
 
 module.exports = router;
