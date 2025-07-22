@@ -41,8 +41,8 @@ async function getPost(id) {
   });
 }
 
-async function getAllComments() {
-  const comments = await prisma.comment.findMany();
+async function getAllCommentsForPost(postId) {
+  const comments = await prisma.post;
   console.log(comments);
   return comments;
 }
