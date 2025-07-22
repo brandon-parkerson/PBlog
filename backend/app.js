@@ -15,13 +15,13 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(express.json())
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/register", usersRouter);
 app.use("/api/posts", postsRouter);
-app.use("/api/posts/:postId", postsRouter);
-app.use("/api/posts/:postId/comments", postsRouter);
+
 
 
 
