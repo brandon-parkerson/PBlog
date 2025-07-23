@@ -1,7 +1,12 @@
+const db = require("../db/queries");
+
 exports.getAllPosts = (req, res) => {
-    // get posts from db
-}
+  const posts = db.getAllPosts();
+  res.json(posts);
+};
 
 exports.getPost = (req, res) => {
-    // get post and send as json
-}
+  const postId = req.params;
+  const post = db.getPost(postId);
+  res.json(post);
+};
