@@ -1,4 +1,4 @@
-const { PrismaClient } = require("./generated/prisma");
+const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
 
 async function createUser(firstName, lastName, email, password, isAuthor) {
@@ -28,17 +28,28 @@ async function deleteUser(id) {
 }
 
 async function getAllPosts() {
-  const posts = await prisma.post.findMany();
-  console.log(posts);
-  return posts;
+  try {
+    const posts = await prisma.post.findMany();
+    console.log(posts);
+    return posts;
+  } catch (err) {
+    const errMessage = "No posts";
+    return errMessage;
+  }
 }
 
 async function getPost(id) {
-  const post = await prisma.post.findUnique({
-    where: {
-      id: id,
-    },
-  });
+  try {
+    const post = await prisma.post.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    return post;
+  } catch (err) {
+    const errMessage = "Post does not exist";
+    return errMessage;
+  }
 }
 
 async function getAllCommentsForPost(postId) {
@@ -53,5 +64,5 @@ module.exports = {
   deleteUser,
   getAllPosts,
   getPost,
-  getAllComments,
+  getAllCommentsForPost,
 };
