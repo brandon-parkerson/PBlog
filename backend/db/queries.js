@@ -13,6 +13,20 @@ async function createUser(firstName, lastName, email, password, isAuthor) {
   });
 }
 
+async function getUser(id) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    return user;
+  } catch (err) {
+    const errMessage = "not a valid user";
+    return errMessage;
+  }
+}
+
 async function getAllUsers() {
   const users = await prisma.user.findMany();
   console.log(users);
@@ -60,6 +74,7 @@ async function getAllCommentsForPost(postId) {
 
 module.exports = {
   createUser,
+  getUser,
   getAllUsers,
   deleteUser,
   getAllPosts,
