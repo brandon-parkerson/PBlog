@@ -9,6 +9,7 @@ const usersRouter = require("./routes/usersRoutes");
 const postsRouter = require("./routes/postsRoutes");
 const indexRouter = require("./routes/indexRoutes");
 const loginRouter = require("./routes/loginRoutes");
+const publishRouter = require("./routes/publishRoutes");
 
 const app = express();
 app.use(
@@ -18,7 +19,7 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use(express.json())
+app.use(express.json());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
@@ -26,9 +27,7 @@ app.use("/api", indexRouter);
 app.use("/api/register", usersRouter);
 app.use("/api/posts", verifyToken, postsRouter);
 app.use("/api/login", loginRouter);
-
-
-
+app.use("/api/publish", verifyToken, publishRouter);
 
 app.listen(3000, async () => {
   console.log("Server running on port 3000...");
@@ -37,8 +36,4 @@ app.listen(3000, async () => {
   console.log(user);
 });
 
-
 // TODO: FINISH JWT TUTORIAL TIMESTAMP: 9:25 https://www.youtube.com/watch?v=7nafaH9SddU&ab_channel=TraversyMedia
-
-
-
