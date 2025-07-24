@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import Button from '@mui/material/Button';
 
-function App() {
-  const [count, setCount] = useState(0)
+import TextField from "@mui/material/TextField";
 
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
+function LoginForm() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="log-in-form">
+      
+      <TextField
+        id="outlined-basic"
+        label="Email"
+        variant="outlined"
+        type="email"
+        required
+      />
+      <TextField
+        id="outlined-basic"
+        label="Password"
+        variant="outlined"
+        type="password"
+        required
+      />
+      <Button variant="contained" className="log-in-btn">Log In</Button>
+    </div>
+  );
 }
 
-export default App
+function App() {
+  const [count, setCount] = useState(0);
+  console.log("app reloaded");
+
+  return (
+    <div className="log-in-page">
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline></CssBaseline>
+
+        <h1 className="title">Welcome to PBlog!</h1>
+        <LoginForm />
+        <Button variant="text">Register</Button>
+      </ThemeProvider>
+    </div>
+  );
+}
+
+export default App;
